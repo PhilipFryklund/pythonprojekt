@@ -50,9 +50,16 @@ def plockaUpp():
         print(f"{namn} har stigit på bussen och satt sig {plats}.")
     else:
         print("Bussen är full.")
+        
 # Avlägsnar en person från bussen.
 def gåAv(passagerare):
-    return
+    namn = input("Ange namn på passageraren som ska gå av: ")
+    for person in buss:
+        if person.getNamn() == namn:
+            buss.remove(person)
+            print(f"{namn} har gått av bussen.")
+            return
+    print(f"{namn} finns inte på bussen.")
 
 # Listar alla passagerare på bussen.
 def skrivUt():

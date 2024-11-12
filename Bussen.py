@@ -10,38 +10,46 @@ lagrar passagerare i en lista.
 import random as rand
 
 # ---------------------------- Klassdefinitioner ------------------------------ #
-class Person():
     """ Person är en klass för att representera personer i bussen. Varje objekt
     som skapas ur klassen har ett namn och en ålder, samt metoder för att returnera
     alternativt modifiera respektive attribut. """
+   class Person:
     def __init__(self, namn, ålder):
         self.namn = namn
         self.ålder = ålder
 
-    # Strängrepresentation av objektet.
     def __str__(self):
-        return f"Det här är {self.namn}. Hen är {self.ålder} år gammal."
+        return f"{self.namn}, {self.ålder} år gammal."
 
-    # Setters
     def setNamn(self, nyttNamn):
         self.namn = nyttNamn
 
     def setÅlder(self, nyÅlder):
         self.ålder = nyÅlder
 
-    # Getters
     def getNamn(self):
         return self.namn
 
     def getÅlder(self):
         return self.ålder
 
+
 # ------------------------- Funktionsdefinitioner ---------------------------- #
 
 # Lägger till en ny person i bussen.
-def plockaUpp(passagerare):
-    return
+buss = []
 
+def plockaUpp():
+    if len(buss) < 25:
+        namn = input("Ange namn: ")
+        ålder = int(input("Ange ålder: "))
+        person = Person(namn, ålder)
+        buss.append(person)
+        platser = ["Längst bak", "längst fram", "till höger i mitten", "till vänster i mitten", "Med en pensionär"]
+        plats = rand.choice(platser)
+        print(f"{namn} har stigit på bussen och satt sig {plats}.")
+    else:
+        print("Bussen är full.")
 # Avlägsnar en person från bussen.
 def gåAv(passagerare):
     return

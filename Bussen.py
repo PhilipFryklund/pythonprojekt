@@ -6,14 +6,11 @@ Datum:
 Det här är ett program för hantering av passagerare på en buss. Programmet
 lagrar passagerare i en lista.
 """
-# ------------------------- Biblioteksimportering ----------------------------- #
+#Importera random
 import random as rand
 
-# ---------------------------- Klassdefinitioner ------------------------------ #
-    """ Person är en klass för att representera personer i bussen. Varje objekt
-    som skapas ur klassen har ett namn och en ålder, samt metoder för att returnera
-    alternativt modifiera respektive attribut. """
-   class Person:
+#Klassdefinitioner
+class Person:
     def __init__(self, namn, ålder):
         self.namn = namn
         self.ålder = ålder
@@ -33,10 +30,7 @@ import random as rand
     def getÅlder(self):
         return self.ålder
 
-
 # ------------------------- Funktionsdefinitioner ---------------------------- #
-
-# Lägger till en ny person i bussen.
 buss = []
 
 def plockaUpp():
@@ -45,14 +39,11 @@ def plockaUpp():
         ålder = int(input("Ange ålder: "))
         person = Person(namn, ålder)
         buss.append(person)
-        platser = ["Längst bak", "längst fram", "till höger i mitten", "till vänster i mitten", "Med en pensionär"]
-        plats = rand.choice(platser)
-        print(f"{namn} har stigit på bussen och satt sig {plats}.")
+        print(f"{namn} har stigit på bussen.")
     else:
         print("Bussen är full.")
-        
-# Avlägsnar en person från bussen.
-def gåAv(passagerare):
+
+def gåAv():
     namn = input("Ange namn på passageraren som ska gå av: ")
     for person in buss:
         if person.getNamn() == namn:
@@ -61,13 +52,17 @@ def gåAv(passagerare):
             return
     print(f"{namn} finns inte på bussen.")
 
-# Listar alla passagerare på bussen.
 def skrivUt():
-    return
+    if buss:
+        for person in buss:
+            print(person)
+    else:
+        print("Inga passagerare på bussen.")
 
-# Skriver ut den sammanlagda åldern på passagerarna.
 def sammanlagdÅlder():
-    return
+    total = sum(person.getÅlder() for person in buss)
+    print(f"Sammanlagd ålder: {total} år.")
+    return total
 
 # Skriver ut medelåldern på passagerarna i bussen.
 def medelÅlder():
@@ -92,6 +87,7 @@ def peta(passagerare):
     return
 
 # ------------------------------ Huvudprogram --------------------------------- #
+# ------------------------------ Huvudprogram --------------------------------- #
 def main():
     menyVal = ""
 
@@ -103,37 +99,44 @@ def main():
                     Välkommen till buss-simulatorn. Välj ett av alternativen nedan:
             1. Plocka upp ny passagerare                        2. Låt passagerare gå av
             3. Skriv ut alla passagerare                        4. Beräkna sammanlagd ålder
-            4. Beräkna medelåldern                              5. Hitta äldst person
-            6. Sortera bussen                                   7. Hitta personer inom ett specifikt åldersspann
-            8. Peta på passagerare                              q. Avsluta
+            5. Beräkna medelåldern                              6. Hitta äldst person
+            7. Sortera bussen                                   8. Hitta personer inom ett specifikt åldersspann
+            9. Peta på passagerare                              q. Avsluta
         ---------------------------------------------------------------------------------------
         """)
 
         menyVal = input("-> ")
 
         if menyVal == "1":
-            pass
+            plockaUpp()
         elif menyVal == "2":
-            pass
+            gåAv()
         elif menyVal == "3":
-            pass
+            skrivUt()
         elif menyVal == "4":
-            pass
+            sammanlagdÅlder()
         elif menyVal == "5":
-            pass
+            medelÅlder()
         elif menyVal == "6":
-            pass
+            äldst()
         elif menyVal == "7":
-            pass
+            busSort()
         elif menyVal == "8":
-            pass
-
-print(
-"""
+            hittaPassagerare()
+        elif menyVal == "9":
+            peta()
+        elif menyVal == "q":
+            print("Bussen körde av vägen pga ishalka")
+        else:
+            print("Ogiltigt val. Försök igen.")
+    
+    # Bussen visas efter att programmet avslutas.
+    print(
+    """
                                            _____________
                                          _/_|[][][][][] | - -
                                         ( SL - Lokalbuss| - -
                                         =--OO-------OO--=
-""")
+    """)
 
 main()

@@ -66,11 +66,20 @@ def sammanlagdÅlder():
 
 # Skriver ut medelåldern på passagerarna i bussen.
 def medelÅlder():
-    return
+    if buss:
+        medel = sammanlagdÅlder() / len(buss)
+        print(f"Medelålder: {medel:.2f} år.")
+        return medel
+    else:
+        print("Inga passagerare på bussen.")
 
 # Skriver ut personen som är äldst på bussen.
 def äldst():
-    return
+    if buss:
+        äldsta = max(buss, key=lambda person: person.getÅlder())
+        print(f"Den äldsta passageraren är {äldsta}.")
+    else:
+        print("Inga passagerare på bussen.")
 
 # Sorterar bussen, antingen efter namn i bokstavsordning eller efter ålder.
 def busSort():

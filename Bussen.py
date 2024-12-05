@@ -139,7 +139,7 @@ def hittaPassagerare():
 
 def peta():
     if not buss:
-        print("Bussen är tom!")
+        print("Inga passagerare på bussen")
         return
    
     namn = input("Ange namn på passageraren att peta på: ")

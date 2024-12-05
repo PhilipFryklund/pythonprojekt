@@ -12,9 +12,7 @@ import random as rand
 
 # ----------------------------- Klassdefinitioner ---------------------------- #
 class Person:
-    """
-    Klass som representerar en person med namn och ålder.
-    """
+   
     def __init__(self, namn, ålder):
         self.namn = namn
         self.ålder = ålder

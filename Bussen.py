@@ -66,10 +66,12 @@ def skrivUt():
         print("Inga passagerare på bussen.")
 
 def sammanlagdÅlder():
-    
-    total = sum(person.getÅlder() for person in buss)
-    print(f"Sammanlagd ålder: {total} år.")
-    return total
+    if buss:
+        total = sum(person.getÅlder() for person in buss)
+        print(f"Sammanlagd ålder: {total} år.")
+
+    else:
+        print("Inga passagerare på bussen")
 
 def medelÅlder():
     
@@ -89,16 +91,15 @@ def äldst():
         print("Inga passagerare på bussen.")
 
 def busSort():
-    """
-    Sorterar passagerarna i alfabetisk ordning efter namn.
-    """
-    buss.sort(key=lambda person: person.getNamn())
-    print("Passagerarna har sorterats i alfabetisk ordning.")
+   
+    if buss:
+        buss.sort(key=lambda person: person.getNamn())
+        print("Passagerarna har sorterats i alfabetisk ordning.")
+    else:
+        print("Inga passagerare på bussen")
 
 def hittaPassagerare():
-    """
-    Skriver ut passagerare inom ett valt åldersspann.
-    """
+    
     if not buss:
         print("Inga passagerare på bussen.")
         return
@@ -137,6 +138,9 @@ def hittaPassagerare():
         print(f"Inga passagerare mellan {min_ålder} och {max_ålder} år.")
 
 def peta():
+    if not buss:
+        print("Bussen är tom!")
+        return
    
     namn = input("Ange namn på passageraren att peta på: ")
     for person in buss:
@@ -144,8 +148,8 @@ def peta():
             reaktioner = ["suckar", "ler", "ignorerar dig", "tittar argt på dig", "svarar med 'What the sigma'"]
             reaktion = rand.choice(reaktioner)
             print(f"{namn} {reaktion}.")
-            return
-    print(f"{namn} finns inte på bussen.")
+    else:
+        print(f"{namn} finns inte på bussen.")
 
 # ------------------------------ Huvudprogram --------------------------------- #
 def main():

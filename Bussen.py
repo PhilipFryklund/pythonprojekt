@@ -37,9 +37,7 @@ class Person:
 buss = []
 
 def plockaUpp():
-    """
-    Lägger till en ny passagerare på bussen om det finns plats.
-    """
+    
     if len(buss) < 25:
         namn = input("Ange namn: ")
         ålder = int(input("Ange ålder: "))
@@ -50,9 +48,7 @@ def plockaUpp():
         print("Bussen är full.")
 
 def gåAv():
-    """
-    Tar bort en passagerare från bussen baserat på namn.
-    """
+    
     namn = input("Ange namn på passageraren som ska gå av: ")
     for person in buss:
         if person.getNamn() == namn:
@@ -62,9 +58,7 @@ def gåAv():
     print(f"{namn} finns inte på bussen.")
 
 def skrivUt():
-    """
-    Skriver ut alla passagerare på bussen.
-    """
+    
     if buss:
         for person in buss:
             print(person)
@@ -72,17 +66,13 @@ def skrivUt():
         print("Inga passagerare på bussen.")
 
 def sammanlagdÅlder():
-    """
-    Beräknar och skriver ut den sammanlagda åldern för passagerarna.
-    """
+    
     total = sum(person.getÅlder() for person in buss)
     print(f"Sammanlagd ålder: {total} år.")
     return total
 
 def medelÅlder():
-    """
-    Beräknar och skriver ut medelåldern för passagerarna.
-    """
+    
     if buss:
         medel = sammanlagdÅlder() / len(buss)
         print(f"Medelålder: {medel:.2f} år.")
@@ -91,9 +81,7 @@ def medelÅlder():
         print("Inga passagerare på bussen.")
 
 def äldst():
-    """
-    Skriver ut den äldsta passageraren på bussen.
-    """
+   
     if buss:
         äldsta = max(buss, key=lambda person: person.getÅlder())
         print(f"Den äldsta passageraren är {äldsta}.")
@@ -149,9 +137,7 @@ def hittaPassagerare():
         print(f"Inga passagerare mellan {min_ålder} och {max_ålder} år.")
 
 def peta():
-    """
-    Petar på en passagerare och skriver ut deras reaktion.
-    """
+   
     namn = input("Ange namn på passageraren att peta på: ")
     for person in buss:
         if person.getNamn() == namn:
@@ -163,9 +149,7 @@ def peta():
 
 # ------------------------------ Huvudprogram --------------------------------- #
 def main():
-    """
-    Kör huvudmenyn för buss-simulatorn.
-    """
+   
     menyVal = ""
 
     while menyVal != "q":

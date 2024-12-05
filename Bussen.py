@@ -83,19 +83,63 @@ def äldst():
 
 # Sorterar bussen, antingen efter namn i bokstavsordning eller efter ålder.
 def busSort():
-    return
+    buss.sort(key=lambda person: person.getNamn())
+    print("Passagerarna har sorterats i alfabetisk ordning.")
+
 
 # Skriver ut en lista på alla passagerare inom ett visst åldersspann.
-def hittaPassagerare(åldersSpann):
-    return
+def hittaPassagerare():
+    if not buss:  
+        print("Inga passagerare på bussen.")
+        return
+
+    print("""
+    Välj ett åldersspann:
+    1. 0-20
+    2. 21-40
+    3. 41-60
+    4. 61-70
+    5. 71+
+    """)
+    val = input("-> ")
+
+    if val == "1":
+        min_ålder, max_ålder = 0, 20
+    elif val == "2":
+        min_ålder, max_ålder = 21, 40
+    elif val == "3":
+        min_ålder, max_ålder = 41, 60
+    elif val == "4":
+        min_ålder, max_ålder = 61, 70
+    elif val == "5":
+        min_ålder, max_ålder = 71, 110  
+    else:
+        print("Ogiltigt val. Försök igen.")
+        return
+
+    resultat = [person for person in buss if min_ålder <= person.getÅlder() <= max_ålder]
+    
+    if resultat:
+        print(f"Passagerare mellan {min_ålder} och {max_ålder} år:")
+        for person in resultat:
+            print(person)
+    else:
+        print(f"Inga passagerare mellan {min_ålder} och {max_ålder} år.")
+
 
 # petar på en passagerare. Skriver ut en text som beskriver passagerarens
 # reaktion när denne blir petad på. För lite svårare uppgift kan reaktionerna
 # variera från person till person, t.ex. beroende på ålder.
-def peta(passagerare):
-    return
+def peta():
+    namn = input("Ange namn på passageraren att peta på: ")
+    for person in buss:
+        if person.getNamn() == namn:
+            reaktioner = ["suckar", "ler", "ignorerar dig", "tittar argt på dig", "svarar med What the sigma"]
+            reaktion = rand.choice(reaktioner)
+            print(f"{namn} {reaktion}.")
+            return
+    print(f"{namn} finns inte på bussen.")
 
-# ------------------------------ Huvudprogram --------------------------------- #
 # ------------------------------ Huvudprogram --------------------------------- #
 def main():
     menyVal = ""

@@ -1,16 +1,20 @@
 # ------------------------------- Information --------------------------------- #
 """
 Titel: Bussen
-Författare:
-Datum:
+Författare: Joel, Philip, Lukas
+Datum: 2024-12-05
 Det här är ett program för hantering av passagerare på en buss. Programmet
 lagrar passagerare i en lista.
 """
-#Importera random
+
+# Importera random för att generera slumpmässiga reaktioner
 import random as rand
 
-#Klassdefinitioner
+# ----------------------------- Klassdefinitioner ---------------------------- #
 class Person:
+    """
+    Klass som representerar en person med namn och ålder.
+    """
     def __init__(self, namn, ålder):
         self.namn = namn
         self.ålder = ålder
@@ -31,9 +35,13 @@ class Person:
         return self.ålder
 
 # ------------------------- Funktionsdefinitioner ---------------------------- #
+# En lista för att lagra passagerare
 buss = []
 
 def plockaUpp():
+    """
+    Lägger till en ny passagerare på bussen om det finns plats.
+    """
     if len(buss) < 25:
         namn = input("Ange namn: ")
         ålder = int(input("Ange ålder: "))
@@ -44,6 +52,9 @@ def plockaUpp():
         print("Bussen är full.")
 
 def gåAv():
+    """
+    Tar bort en passagerare från bussen baserat på namn.
+    """
     namn = input("Ange namn på passageraren som ska gå av: ")
     for person in buss:
         if person.getNamn() == namn:
@@ -53,6 +64,9 @@ def gåAv():
     print(f"{namn} finns inte på bussen.")
 
 def skrivUt():
+    """
+    Skriver ut alla passagerare på bussen.
+    """
     if buss:
         for person in buss:
             print(person)
@@ -60,12 +74,17 @@ def skrivUt():
         print("Inga passagerare på bussen.")
 
 def sammanlagdÅlder():
+    """
+    Beräknar och skriver ut den sammanlagda åldern för passagerarna.
+    """
     total = sum(person.getÅlder() for person in buss)
     print(f"Sammanlagd ålder: {total} år.")
     return total
 
-# Skriver ut medelåldern på passagerarna i bussen.
 def medelÅlder():
+    """
+    Beräknar och skriver ut medelåldern för passagerarna.
+    """
     if buss:
         medel = sammanlagdÅlder() / len(buss)
         print(f"Medelålder: {medel:.2f} år.")
@@ -73,23 +92,28 @@ def medelÅlder():
     else:
         print("Inga passagerare på bussen.")
 
-# Skriver ut personen som är äldst på bussen.
 def äldst():
+    """
+    Skriver ut den äldsta passageraren på bussen.
+    """
     if buss:
         äldsta = max(buss, key=lambda person: person.getÅlder())
         print(f"Den äldsta passageraren är {äldsta}.")
     else:
         print("Inga passagerare på bussen.")
 
-# Sorterar bussen, antingen efter namn i bokstavsordning eller efter ålder.
 def busSort():
+    """
+    Sorterar passagerarna i alfabetisk ordning efter namn.
+    """
     buss.sort(key=lambda person: person.getNamn())
     print("Passagerarna har sorterats i alfabetisk ordning.")
 
-
-# Skriver ut en lista på alla passagerare inom ett visst åldersspann.
 def hittaPassagerare():
-    if not buss:  
+    """
+    Skriver ut passagerare inom ett valt åldersspann.
+    """
+    if not buss:
         print("Inga passagerare på bussen.")
         return
 
@@ -112,7 +136,7 @@ def hittaPassagerare():
     elif val == "4":
         min_ålder, max_ålder = 61, 70
     elif val == "5":
-        min_ålder, max_ålder = 71, 110  
+        min_ålder, max_ålder = 71, 110
     else:
         print("Ogiltigt val. Försök igen.")
         return
@@ -126,15 +150,14 @@ def hittaPassagerare():
     else:
         print(f"Inga passagerare mellan {min_ålder} och {max_ålder} år.")
 
-
-# petar på en passagerare. Skriver ut en text som beskriver passagerarens
-# reaktion när denne blir petad på. För lite svårare uppgift kan reaktionerna
-# variera från person till person, t.ex. beroende på ålder.
 def peta():
+    """
+    Petar på en passagerare och skriver ut deras reaktion.
+    """
     namn = input("Ange namn på passageraren att peta på: ")
     for person in buss:
         if person.getNamn() == namn:
-            reaktioner = ["suckar", "ler", "ignorerar dig", "tittar argt på dig", "svarar med What the sigma"]
+            reaktioner = ["suckar", "ler", "ignorerar dig", "tittar argt på dig", "svarar med 'What the sigma'"]
             reaktion = rand.choice(reaktioner)
             print(f"{namn} {reaktion}.")
             return
@@ -142,12 +165,13 @@ def peta():
 
 # ------------------------------ Huvudprogram --------------------------------- #
 def main():
+    """
+    Kör huvudmenyn för buss-simulatorn.
+    """
     menyVal = ""
 
     while menyVal != "q":
-
-        print(
-        """
+        print("""
                                          --- MENY ---
                     Välkommen till buss-simulatorn. Välj ett av alternativen nedan:
             1. Plocka upp ny passagerare                        2. Låt passagerare gå av
@@ -183,9 +207,7 @@ def main():
         else:
             print("Ogiltigt val. Försök igen.")
     
-    # Bussen visas efter att programmet avslutas.
-    print(
-    """
+    print("""
                                            _____________
                                          _/_|[][][][][] | - -
                                         ( SL - Lokalbuss| - -

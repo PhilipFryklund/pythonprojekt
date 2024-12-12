@@ -148,8 +148,7 @@ def peta():
             reaktioner = ["suckar", "ler", "ignorerar dig", "tittar argt på dig", "svarar med 'What the sigma'"]
             reaktion = rand.choice(reaktioner)
             print(f"{namn} {reaktion}.")
-    else:
-        print(f"{namn} finns inte på bussen.")
+   
 
 # ------------------------------ Huvudprogram --------------------------------- #
 def main():
